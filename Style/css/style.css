@@ -1,0 +1,244 @@
+@font-face{font-family:IRANSansB;font-style:normal;font-weight:700;src:url(../fonts/IRANSans-Bold-web.eot);src:url(../fonts/IRANSans-Bold-web-1.eot) format('embedded-opentype'),
+url(../fonts/IRANSans-Bold-web.woff2) format('woff2'),
+url(../fonts/IRANSans-Bold-web.woff) format('woff'),
+url(../fonts/IRANSans-Bold-web.ttf) format('truetype')
+}
+@font-face{font-family:IRANSansM;font-style:normal;font-weight:500;src:url(../fonts/IRANSans-Medium-web.eot);src:url(../fonts/IRANSans-Medium-web-1.eot) format('embedded-opentype'),
+url(../fonts/IRANSans-Medium-web.woff2) format('woff2'),
+url(../fonts/IRANSans-Medium-web.woff) format('woff'),
+url(../fonts/IRANSans-Medium-web.ttf) format('truetype')
+}
+@font-face{font-family:IRANSansL;font-style:normal;font-weight:300;src:url(../fonts/IRANSans-Light-web.eot);src:url(../fonts/IRANSans-Light-web-1.eot) format('embedded-opentype'),
+url(../fonts/IRANSans-Light-web.woff2) format('woff2'),
+url(../fonts/IRANSans-Light-web.woff) format('woff'),
+url(../fonts/IRANSans-Light-web.ttf) format('truetype')
+}
+@font-face{font-family:IRANSansU;font-style:normal;font-weight:200;src:url(../fonts/IRANSans-UltraLight-web.eot);src:url(../fonts/IRANSans-UltraLight-web-1.eot) format('embedded-opentype'),
+url(../fonts/IRANSans-UltraLight-web.woff2) format('woff2'),
+url(../fonts/IRANSans-UltraLight-web.woff) format('woff'),
+url(../fonts/IRANSans-UltraLight-web.ttf) format('truetype')
+}
+@font-face{font-family:IRANSansW;font-style:normal;font-weight:400;src:url(../fonts/IRANSans-web.eot);src:url(../fonts/IRANSans-web-1.eot) format('embedded-opentype'),
+url(../fonts/IRANSans-web.woff2) format('woff2'),
+url(../fonts/IRANSans-web.woff) format('woff'),
+url(../fonts/IRANSans-web.ttf) format('truetype')
+}
+*{
+  margin: 0px;
+  padding: 0px;
+}
+body{
+  margin: 0px;
+  padding: 0px;
+}
+.add-student{
+  z-index: 9;
+  background: linear-gradient( 45deg, rgba(29, 236, 197, 0.5), rgba(91, 14, 214, 0.5) 100% );
+  font-family: IRANSansB;
+  color: #000000;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  padding: 8px;
+  opacity: 0.8;
+  margin: 15px;
+  margin-top: 30px;
+  border-radius: 1.8px;
+  font-size: 14px;
+  left: 0
+}
+.add-student:hover{
+  background: grey;
+  color: #007BFF;
+}
+.add-student a{
+  color: #000000;
+  text-decoration: none;
+}
+.add-student a:hover{
+  color: white;
+  text-decoration: none;
+}
+.group-count{
+  position: absolute;
+  bottom: 0px;
+  margin: 15px;
+  color: red;
+}
+.copyright-inside{
+  width: 100%;
+  margin-top: 80px;
+  opacity: 0.7;
+  position: fixed;
+  text-align: center;
+  background: linear-gradient( 45deg, rgba(29, 236, 197, 0.5), rgba(91, 14, 214, 0.5) 100% );
+  color: black;
+  padding: 2px;
+  bottom: 0
+}
+.add-student-form{
+  text-align: center;
+  font-family: IRANSansM;
+}
+.add-student-form-inside{
+  text-align: center;
+  background: #e3e3e3;
+}
+.add-student-form-inside input{
+  text-align: center;
+  direction: rtl;
+  font-family: IRANSansL;
+}
+.add-student-form-inside textarea{
+  text-align: center;
+  direction: rtl;
+  font-family: IRANSansL;
+}
+.add-student-form-inside select{
+  text-align: center;
+  direction: rtl;
+  font-family: IRANSansL;
+}
+#student-submit{
+  font-family: IRANSansB;
+}
+.e-message{
+  background: #ff6666;
+  text-align: center;
+  font-family: IRANSansB;
+  opacity: 0.8;
+  padding: 1px;
+  padding-top: 15px
+}
+.flash-message{
+  background: #ff6666;
+  text-align: center;
+  opacity: 0.8;
+  width: 100%;
+  direction: rtl;
+  font-family: IRANSansB;
+  padding: 7px;
+}
+.add-student-p{
+  padding: 10px;
+  margin: 10px;
+  font-family: IRANSansB;
+  font-size: 17px;
+  text-align: right;
+}
+.back-to-index{
+  background: #007BFF;
+  padding: 3px;
+  float: left;
+  margin-top: 15px;
+  color: white;
+  border-radius: 1.7px;
+  font-family: IRANSansW;
+  transition: 300ms;
+  z-index: 10;
+}
+.back-to-index a{
+  text-decoration: none;
+  color: white;
+}
+.back-to-index:hover{
+   background: white;
+   transition: 300ms;
+   color: #007BFF;
+}
+.back-to-index a:hover{
+   transition: 300ms;
+   color: #007BFF;
+}
+.group-name-index{
+  height: 200px;
+  background: #f1f1f1;
+  border: 2px solid #007BFF;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  transition: 500ms;
+  border-radius: 4.2px;
+}
+.group-name-index:hover{
+  background: linear-gradient(
+         45deg,
+         rgba(29, 236, 197, 0.5),
+         rgba(91, 14, 214, 0.5) 100%
+       );
+}
+.group-link{
+  text-decoration: none;
+}
+.group-link:hover{
+  text-decoration: none;
+}
+.group-name-index:hover .group-link a{
+  color: white;
+}
+.group-name-index p{
+  text-align: center;
+  font-size: 25px;
+  font-family: IRANSansB;
+  margin-top: 75px;
+}
+.group-name-title{
+  font-family: IRANSansB;
+  text-align: center;
+  font-size: 35px;
+}
+.student-table{
+  overflow-x: scroll;
+}
+.table-bordered thead td, .table-bordered thead th {
+  text-align: center;
+}
+.table-bordered td{
+  text-align: center;
+}
+.edit-user{
+  font-family: IRANSansB;
+  font-size: 12px;
+  text-decoration: none;
+}
+.edit-user:hover{
+  text-decoration: none;
+  background: #007BFF;
+  color: white;
+  padding: 8%;
+}
+#submit-send-sms{
+  font-family: IRANSansB;
+  text-align: center;
+  float: right;
+  margin-bottom: 15px;
+}
+#submit-delete-student{
+  font-family: IRANSansB;
+  text-align: center;
+  float: right;
+  margin-bottom: 15px;
+  margin-right: 10px
+}
+#student-checkbox{
+  float: right;
+}
+.school-title{
+  text-align: center;
+  margin: 40px;
+}
+.today-navbar{
+  width: 100%;
+  text-align: center;
+  font-family: IRANSansB;
+  background: linear-gradient( 45deg, rgba(29, 236, 197, 0.5), rgba(91, 14, 214, 0.5) 100% );
+}
+#now-date{
+  display: inline-block;
+  color: #ffffff;
+  margin-top: 2px;
+}
+#now-time{
+  margin-top: 2px;
+  margin-left: 20px;
+  display: inline-block;
+}
