@@ -66,15 +66,16 @@ namespace Classes;
             {
               // if (!(filter_var($studentRow['father_tell'],FILTER_VALIDATE_INT)) && !is_numeric($studentRow['father_tell']) && !is_int($studentRow['father_tell']))
               // {
+              if (strlen($studentRow['mother_tell']) || strlen($studentRow['father_tell'])) {
+                $_SESSION['errorMessage'] .= "به ";
+              }
               if (strlen($studentRow['father_tell']) > 8)
               {
                 $SMS->pattern('ie7i1nlhlm', [
-                    'date' => $date,
+                    'date' => $Funcs->nowJalalianDate(),
                     'name' => $studentRow['first_name'] . " " . $studentRow['last_name'],
                 ], [$studentRow['father_tell']]);
-                $_SESSION['errorMessage'] .= "به (پدر)";
-                $_SESSION['errorMessage'] .= '(' . $studentRow['first_name'] . " " . $studentRow['last_name'] . ') ';
-                $_SESSION['errorMessage'] .= "ارسال شد|";
+                $_SESSION['errorMessage'] .= "(پدر)";
               }
               // }
               // if (!(filter_var($studentRow['mother_tell'],FILTER_VALIDATE_INT)) && !is_numeric($studentRow['mother_tell']) && !is_int($studentRow['mother_tell']))
@@ -82,10 +83,12 @@ namespace Classes;
               if (strlen($studentRow['mother_tell']) > 8)
               {
                 $SMS->pattern('ie7i1nlhlm', [
-                    'date' => $date,
+                    'date' => $Funcs->nowJalalianDate(),
                     'name' => $studentRow['first_name'] . " " . $studentRow['last_name'],
                 ], [$studentRow['mother_tell']]);
-                $_SESSION['errorMessage'] .= "به (مادر)";
+                $_SESSION['errorMessage'] .= "(مادر)";
+              }
+              if (strlen($studentRow['mother_tell']) || strlen($studentRow['father_tell'])) {
                 $_SESSION['errorMessage'] .= '(' . $studentRow['first_name'] . " " . $studentRow['last_name'] . ') ';
                 $_SESSION['errorMessage'] .= "ارسال شد|";
               }

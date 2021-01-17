@@ -37,4 +37,8 @@
             echo "<div class='flash-message'>{$Sessions::showErrorMessage()}</div>";
             $SS->unsetErrorMessage();
           }
+          if ($Funcs->checkValue($_SESSION["alertMessage"],false,true)){
+            echo '<script>window.alert("'.$Sessions::showAlertMessage().'");</script>';
+            $SS->unsetErrorMessage();
+          }
        ?>
