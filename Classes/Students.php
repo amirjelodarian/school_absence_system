@@ -54,9 +54,7 @@ namespace Classes;
       }
       public function sendSmsToParentBYIds($ids = [],$group_name)
       {
-        global $DB,$Funcs;
-        $fatherContacts = [];
-        $motherContacts = [];
+        global $DB,$Funcs,$SMS;
         foreach ($ids as $id)
         {
           $studentResult = $DB->selectById('students',$id);
@@ -66,38 +64,36 @@ namespace Classes;
             $DB->update('students','absence',$absence,"WHERE id={$id}");
             if (!empty($studentRow['father_tell']) || !empty($studentRow['mother_tell']))
             {
-              if (!(filter_var($studentRow['father_tell'],FILTER_VALIDATE_INT)) && !is_numeric($studentRow['father_tell']) && !is_int($studentRow['father_tell']))
+              // if (!(filter_var($studentRow['father_tell'],FILTER_VALIDATE_INT)) && !is_numeric($studentRow['father_tell']) && !is_int($studentRow['father_tell']))
+              // {
+              if (strlen($studentRow['father_tell']) > 8)
               {
-                if (strlen($studentRow['father_tell']) > 8)
-                {
-                  array_push($fatherContacts,$studentRow['father_tell']);
-                }
+                $SMS->pattern('ie7i1nlhlm', [
+                    'date' => $date,
+                    'name' => $studentRow['first_name'] . " " . $studentRow['last_name'],
+                ], [$studentRow['father_tell']]);
+                $_SESSION['errorMessage'] .= "به (پدر)";
+                $_SESSION['errorMessage'] .= '(' . $studentRow['first_name'] . " " . $studentRow['last_name'] . ') ';
+                $_SESSION['errorMessage'] .= "ارسال شد|";
               }
-              if (!(filter_var($studentRow['mother_tell'],FILTER_VALIDATE_INT)) && !is_numeric($studentRow['mother_tell']) && !is_int($studentRow['mother_tell']))
+              // }
+              // if (!(filter_var($studentRow['mother_tell'],FILTER_VALIDATE_INT)) && !is_numeric($studentRow['mother_tell']) && !is_int($studentRow['mother_tell']))
+              // {
+              if (strlen($studentRow['mother_tell']) > 8)
               {
-                if (strlen($studentRow['mother_tell']) > 8)
-                {
-                  array_push($motherContacts,$studentRow['mother_tell']);
-                }
+                $SMS->pattern('ie7i1nlhlm', [
+                    'date' => $date,
+                    'name' => $studentRow['first_name'] . " " . $studentRow['last_name'],
+                ], [$studentRow['mother_tell']]);
+                $_SESSION['errorMessage'] .= "به (مادر)";
+                $_SESSION['errorMessage'] .= '(' . $studentRow['first_name'] . " " . $studentRow['last_name'] . ') ';
+                $_SESSION['errorMessage'] .= "ارسال شد|";
               }
+              // }
             }else{
               $_SESSION['errorMessage'] .= "شماره مادر یا پدر ";
               $_SESSION['errorMessage'] .= '(' . $studentRow['first_name'] . ' ' . $studentRow['last_name'] . ')';
               $_SESSION['errorMessage'] .= ' خالی است|';
-            }
-          }
-          if (!empty($fatherContacts)) {
-            foreach ($fatherContacts as $contact) {
-              SMS::pattern('ie7i1nlhlm', [
-                  'date' => $date,
-              ], [$contact]);
-            }
-          }
-          if (!empty($motherContacts)) {
-            foreach ($motherContacts as $contact) {
-              SMS::pattern('ie7i1nlhlm', [
-                  'date' => $date,
-              ], [$contact]);
             }
           }
         }

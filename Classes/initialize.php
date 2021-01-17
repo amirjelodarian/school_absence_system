@@ -16,6 +16,7 @@ date_default_timezone_set('Asia/Tehran');
     require_once "Sessions.php";
     require_once "Functions.php";
     require_once "Students.php";
+    require_once "Sms.php";
     require_once "jdf.php";
 
 
