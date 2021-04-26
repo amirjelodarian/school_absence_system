@@ -1,5 +1,7 @@
 <?
-
+// another : amir jelodarian
+// email : amirjelodarian@gmail.com
+// github : http://github.com/amirjelodarian/
 namespace Functions;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;

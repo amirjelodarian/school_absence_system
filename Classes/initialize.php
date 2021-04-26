@@ -7,7 +7,9 @@ date_default_timezone_set('Asia/Tehran');
     defined('DB_USER') ? null : define('DB_USER','root');
     defined('DB_PASS') ? null : define('DB_PASS','');
     defined('DB_NAME') ? null : define('DB_NAME','ahrar_school');
-    defined('ANOTHER') ? null : define('ANOTHER','&copy; All Right Reversed By Amir Jelodarian');
+    defined('USERNAME') ? null : define('USERNAME','@ahrar@');
+    defined('PASSWORD') ? null : define('PASSWORD','1400ahrar1400');
+    defined('ANOTHER') ? null : define('ANOTHER','&copy; All Right Reversed By Sepehr Niki & Shahram Taghipour & Amir Jelodarian');
     ///////////////////////////
 
 

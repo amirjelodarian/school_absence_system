@@ -1,7 +1,7 @@
 <?php include "Includes/header.php"; ?>
 <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-      <h1 class="school-title">Ahrar</h1>
+        <h1 class="school-title">هنرستان احرار منطقه ۵ شهر تهران</h1>
 
       <div class="row">
       <?php

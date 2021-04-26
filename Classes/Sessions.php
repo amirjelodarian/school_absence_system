@@ -1,4 +1,7 @@
 <?
+// another : amir jelodarian
+// email : amirjelodarian@gmail.com
+// github : http://github.com/amirjelodarian/
 namespace Classes;
     class Sessions{
         public function __construct(){
@@ -32,6 +35,23 @@ namespace Classes;
         public function unsetErrorMessage(){
             $_SESSION["alertMessage"] = "";
             $_SESSION["errorMessage"] = "";
+        }
+
+        public function login($redirect = ''){
+            if (isset($_SESSION['logged_in']))
+                return true;
+            else
+                if ($redirect !== '')
+                    header("Location: ".$redirect);
+        }
+
+        public function logout($redirect = ''){
+            if ($this->login()){
+                $_SESSION['logged_in'] = '';
+                unset($_SESSION['logged_in']);
+                if ($redirect !== '')
+                    header("Location: ".$redirect);
+            }
         }
     }
     $Sessions = new Sessions();

@@ -1,4 +1,7 @@
 <?php
+// another : amir jelodarian
+// email : amirjelodarian@gmail.com
+// github : http://github.com/amirjelodarian/
 namespace Classes;
   Class Students{
       public $first_name;
@@ -52,7 +55,7 @@ namespace Classes;
               $DB->freeResult($studentResult);
           }
       }
-      public function sendSmsToParentBYIds($ids = [],$group_name)
+      public function sendAbsenceSmsToParentBYIds($ids = [],$group_name)
       {
         global $DB,$Funcs,$SMS;
         foreach ($ids as $id)
@@ -71,7 +74,7 @@ namespace Classes;
               }
               if (strlen($studentRow['father_tell']) > 8)
               {
-                $SMS->pattern('ie7i1nlhlm', [
+                $SMS->pattern('42owqhtta0', [
                     'date' => $Funcs->nowJalalianDate(),
                     'name' => $studentRow['first_name'] . " " . $studentRow['last_name'],
                 ], [$studentRow['father_tell']]);
@@ -82,7 +85,7 @@ namespace Classes;
               // {
               if (strlen($studentRow['mother_tell']) > 8)
               {
-                $SMS->pattern('ie7i1nlhlm', [
+                $SMS->pattern('42owqhtta0', [
                     'date' => $Funcs->nowJalalianDate(),
                     'name' => $studentRow['first_name'] . " " . $studentRow['last_name'],
                 ], [$studentRow['mother_tell']]);
@@ -102,6 +105,54 @@ namespace Classes;
         }
         $Funcs->redirectTo('group.php?group_name='.$group_name);
       }
+
+      public function sendBookSmsToParentBYIds($ids = [],$group_name)
+      {
+          global $DB,$Funcs,$SMS;
+          foreach ($ids as $id)
+          {
+              $studentResult = $DB->selectById('students',$id);
+              if ($studentRow = $DB->fetchArray($studentResult))
+              {
+                  if (!empty($studentRow['father_tell']) || !empty($studentRow['mother_tell']))
+                  {
+                      // if (!(filter_var($studentRow['father_tell'],FILTER_VALIDATE_INT)) && !is_numeric($studentRow['father_tell']) && !is_int($studentRow['father_tell']))
+                      // {
+                      if (strlen($studentRow['mother_tell']) || strlen($studentRow['father_tell'])) {
+                          $_SESSION['errorMessage'] .= "به ";
+                      }
+                      if (strlen($studentRow['father_tell']) > 8)
+                      {
+                          $SMS->pattern('8viz40thmx', [
+                              'name' => $studentRow['first_name'] . " " . $studentRow['last_name'],
+                          ], [$studentRow['father_tell']]);
+                          $_SESSION['errorMessage'] .= "(پدر)";
+                      }
+                      // }
+                      // if (!(filter_var($studentRow['mother_tell'],FILTER_VALIDATE_INT)) && !is_numeric($studentRow['mother_tell']) && !is_int($studentRow['mother_tell']))
+                      // {
+                      if (strlen($studentRow['mother_tell']) > 8)
+                      {
+                          $SMS->pattern('8viz40thmx', [
+                              'name' => $studentRow['first_name'] . " " . $studentRow['last_name'],
+                          ], [$studentRow['mother_tell']]);
+                          $_SESSION['errorMessage'] .= "(مادر)";
+                      }
+                      if (strlen($studentRow['mother_tell']) || strlen($studentRow['father_tell'])) {
+                          $_SESSION['errorMessage'] .= '(' . $studentRow['first_name'] . " " . $studentRow['last_name'] . ') ';
+                          $_SESSION['errorMessage'] .= "پیام کتاب ارسال شد|";
+                      }
+                      // }
+                  }else{
+                      $_SESSION['errorMessage'] .= "شماره مادر یا پدر ";
+                      $_SESSION['errorMessage'] .= '(' . $studentRow['first_name'] . ' ' . $studentRow['last_name'] . ')';
+                      $_SESSION['errorMessage'] .= ' خالی است|';
+                  }
+              }
+          }
+          $Funcs->redirectTo('group.php?group_name='.$group_name);
+      }
+
       public function deleteStudentsByIds($ids = [],$group_name)
       {
         global $DB,$Funcs;

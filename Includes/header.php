@@ -1,4 +1,8 @@
 <?php require_once "Classes/initialize.php"; ?>
+<?php
+    if (isset($_POST['logout_submit']))
+        $SS->logout('login.php');
+?>
 <!DOCTYPE html>
 <html lang="fa">
   <head>
@@ -31,7 +35,11 @@
           </div>
         </div>
       </div>
-
+        <?php if ($SS->login('login.php')){ ?>
+        <form method="post">
+            <input type="submit" class="logout" name="logout_submit" value="خروج">
+        </form>
+        <?php }else{ $SS->logout('login.php'); } ?>
       <?php
           if ($Funcs->checkValue($_SESSION["errorMessage"],false,true)){
             echo "<div class='flash-message'>{$Sessions::showErrorMessage()}</div>";

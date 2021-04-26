@@ -2,13 +2,17 @@
 <?php
  if (isset($_GET['group_name']) && !empty($_GET['group_name'])){
    $group_name = $DB->escapeValue($_GET['group_name']);
-   if (isset($_POST['submit_send_sms']) && isset($_POST['id']) && !empty($_POST['id']) && isset($_POST['group_name'])) {
-       $std->sendSmsToParentBYIds($_POST['id'],$group_name);
-   }
-   if (isset($_POST['submit_delete_student']) && isset($_POST['id']) && !empty($_POST['id']) && isset($_POST['group_name'])) {
+
+   if (isset($_POST['submit_send_absence_sms']) && isset($_POST['id']) && !empty($_POST['id']) && isset($_POST['group_name']))
+       $std->sendAbsenceSmsToParentBYIds($_POST['id'],$group_name);
+
+   if (isset($_POST['submit_delete_student']) && isset($_POST['id']) && !empty($_POST['id']) && isset($_POST['group_name']))
        $std->deleteStudentsByIds($_POST['id'],$group_name);
-   }
+
+     if (isset($_POST['submit_send_book_sms']) && isset($_POST['id']) && !empty($_POST['id']) && isset($_POST['group_name']))
+         $std->sendBookSmsToParentBYIds($_POST['id'],$group_name);
    echo "<p class='group-name-title'><span style='color:red;font-size:20px'>({$DB->count('students','id',"WHERE group_name='{$group_name}'")})</span>{$group_name}</p>"; ?>
+   <span style="font-family: IRANSansW">انتخاب همه</span>&nbsp;<input type="checkbox" id="select-all-inputs" />
    <form action="<?= htmlspecialchars($_SERVER['PHP_SELF'])."?group_name=" . urlencode($group_name) ?>" method="post">
    <table class="table table-hover table-bordered" id="student-table">
     <thead>
@@ -29,8 +33,9 @@
    $studentsResult = $std->selectStudentsByGroupName($group_name,'index.php'); ?>
         </tbody>
         <input type="hidden" name="group_name" value="<?= $group_name ?>" />
-        <input type="submit" name="submit_send_sms" value="ارسال پیامک به فهرست انتخاب شده" class="btn btn-success" id="submit-send-sms" />
-        <input type="submit" name="submit_delete_student" value="حدف فهرست انتخاب شده" class="btn btn-danger" id="submit-delete-student" />
+        <input type="submit" name="submit_send_absence_sms" value="ارسال پیامک غیبت" class="btn btn-success AreYouSure" id="submit-send-sms" />
+        <input type="submit" name="submit_delete_student" value="حدف" class="btn btn-danger AreYouSure" id="submit-delete-student" />
+        <input type="submit" name="submit_send_book_sms" value="ارسال پیامک کتاب" style="margin-right: 10px" class="btn btn-primary AreYouSure" id="submit-send-sms" />
   </table>
 </form>
  <?php }
@@ -84,6 +89,10 @@ $(document).ready(function() {
   });
   $('#student-table tr').click(function(){
     var checkbox = $(this).find('input[type=checkbox]');
+    checkbox.prop("checked", !checkbox.prop("checked"));
+  });
+  $('#select-all-inputs').click(function(){
+    var checkbox = $("#student-table_wrapper").find('input[type=checkbox]');
     checkbox.prop("checked", !checkbox.prop("checked"));
   });
 });

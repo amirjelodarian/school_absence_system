@@ -1,6 +1,8 @@
 <?
+// another : amir jelodarian
+// email : amirjelodarian@gmail.com
+// github : http://github.com/amirjelodarian/
     namespace Classes;
-
     class Database{
 
         private $connection;

@@ -1,4 +1,7 @@
 <?php
+// another : amir jelodarian
+// email : amirjelodarian@gmail.com
+// github : http://github.com/amirjelodarian/
 namespace Validate;
     class Validate{
         public static $errors = "";

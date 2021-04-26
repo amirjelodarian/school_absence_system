@@ -1,3 +1,12 @@
+$(document).ready(function (){
+  $('#AreYouSure,.AreYouSure').click(function(){
+    var applyAreYouSure = window.confirm('آیا مطمئن هستید ؟');
+    if(applyAreYouSure == true)
+      return true;
+    else
+      return false;
+  });
+});
 function startTime(){
   var today = new Date();
   var h = today.getHours();
